@@ -1,0 +1,85 @@
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #f0f0f0;
+    --text-color: #333;
+
+}
+
+
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+}
+button {
+    position: relative;
+    z-index: 10;
+
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#you-win {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    font-size: 68px;
+    color: white;
+    display: none;
+}
+
+#Yippie {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    font-size: 48px;
+    color: white;
+    display: none;
+}
+
+#output, #awaiting {
+    position: relative;
+    z-index: 10;
+    font-size: 20px;
+    color: white;
+}
+
+.images {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+}
+
+.images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

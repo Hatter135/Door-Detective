@@ -18,10 +18,10 @@ function speak(text) {
 gamestate = "mainmenu";
 previosroom = "main-room-image";
 
-let gotmail = new Audio('Audio/Got Mail.wav');
-let error = new Audio('Audio/Windows XP Error Sound.mp3');
-let horray = new Audio('Audio/Horray.wav');
-let yippieeffect = new Audio('Audio/Yippee Sound Effect.wav');
+let gotmail = new Audio('audio/got-mail.wav');
+let error = new Audio('audio/windows-xp-error-sound.mp3');
+let horray = new Audio('audio/horray.wav');
+let yippieeffect = new Audio('audio/yippee-sound-effect.wav');
 
 
 const canGoBackToMain = [

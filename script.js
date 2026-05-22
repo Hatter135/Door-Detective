@@ -184,7 +184,7 @@ if (command.includes("start")) {
 
 
 // Computer
-else if (command.includes("go to the computer") || command.includes("computer")) {
+else if (gamestate === "mainroom" && (command.includes("go to the computer") || command.includes("computer"))) {
 
     if (gamestate !== "mainroom") {
         speak("The computer is not in this room.");
@@ -228,7 +228,7 @@ else if (command.includes("turn on the computer") || command.includes("turn on")
 
 }
 // Logging in
-else if (command.includes("log into the computer") || command.includes("log in") || command.includes("login") && gamestate === "computer login") {
+else if (gamestate === "computer login" && (command.includes("log into the computer") || command.includes("log in") || command.includes("login"))) {
 
     speak("Username?");
     document.getElementById("output").textContent = "Username?";
@@ -253,7 +253,7 @@ else if (command.includes("john") && gamestate === "username correct") {
     }
 
 // Logging in and mail
-else if (command.includes("yes") || command.includes("yeah") || command.includes("log in") || command.includes("login") && gamestate === "ready to log in") {
+else if (gamestate === "ready to log in" && (command.includes("yes") || command.includes("yeah") || command.includes("log in") || command.includes("login"))) {
         speak("Logging in.");
         document.getElementById("output").textContent = "Logging in.";
         setTimeout(() => {
@@ -270,7 +270,7 @@ else if (command.includes("yes") || command.includes("yeah") || command.includes
     }
 
 // Mail
-else if (command.includes("yes") && gamestate === "logged in") {
+else if (gamestate === "logged in" && (command.includes("yes") || command.includes("yeah"))) {
     speak("I opened the mail.");
     document.getElementById("output").textContent = "I opened the mail.";
 
@@ -434,7 +434,7 @@ else if(command.includes("go to the middle door") || command.includes("go middle
 
 
 // Escape and Win
-else if (command.includes("go through the door") || command.includes("go through") && gamestate === "door unlocked"){
+else if (command.includes("go through the door") || command.includes("go through") || command.includes("escape") || command.includes("open the door") && gamestate === "door unlocked"){
     speak("You go through the door and escape. Congratulations, you win!");
     document.getElementById("output").textContent = "You go through the door and escape. Congratulations, you win!";
     gamestate = "game won";

@@ -479,6 +479,8 @@ else if (command.includes("go back") && canGoBackToMain.includes(gamestate)){
     hideAll();
     document.getElementById("main-room-image").style.display = "block";
     gamestate = "mainroom";
+    stopmusic();
+    maintheme.play();
 }
 
 
@@ -487,6 +489,8 @@ else if (command.includes("go back") && gamestate === "keypad"){
     hideAll();
     document.getElementById("middle-door-image").style.display = "block";
     gamestate = "middle door";
+    stopmusic();
+    maintheme.play();
 }
 
 else if (command.includes("go back") && gamestate === "toilet" || gamestate === "wall" || gamestate === "shower") {
@@ -496,6 +500,8 @@ else if (command.includes("go back") && gamestate === "toilet" || gamestate === 
     hideAll();
     document.getElementById("bathroom-image").style.display = "block";
     gamestate = "bathroom";
+    stopmusic();
+    maintheme.play();
 }
 
 

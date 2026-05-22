@@ -184,7 +184,7 @@ if (command.includes("start")) {
 
 
 // Computer
-else if (command.includes("go to the computer")) {
+else if (command.includes("go to the computer") || command.includes("computer")) {
 
     if (gamestate !== "mainroom") {
         speak("The computer is not in this room.");
@@ -200,7 +200,7 @@ else if (command.includes("go to the computer")) {
 }
 
 // Turning on the computer
-else if (command.includes("turn on the computer")) {
+else if (command.includes("turn on the computer") || command.includes("turn on") || command.includes("turn it on")) {
 
     if (gamestate !== "computer") {
         speak("You are not at the computer.");
@@ -228,7 +228,7 @@ else if (command.includes("turn on the computer")) {
 
 }
 // Logging in
-else if (command.includes("log into the computer") && gamestate === "computer login") {
+else if (command.includes("log into the computer") || command.includes("log in") && gamestate === "computer login") {
 
     speak("Username?");
     document.getElementById("output").textContent = "Username?";
@@ -332,7 +332,7 @@ else if (command.includes("yes") && gamestate === "logged in") {
             
 
 // bathroom and right room
-else if(command.includes("go to the right room") && gamestate === "mainroom"){
+else if(command.includes("go to the right room") || command.includes("go right") || command.includes("right") && gamestate === "mainroom"){
 
     hideAll();
     document.getElementById("bathroom-image").style.display = "block";
@@ -380,7 +380,7 @@ else if(command.includes("shower") && gamestate === "bathroom"){
 }
 
 // Middle Door
-else if(command.includes("go to the middle door") && gamestate === "mainroom"){
+else if(command.includes("go to the middle door") || command.includes("go middle") || command.includes("middle") && gamestate === "mainroom"){
     hideAll();
     document.getElementById("middle-door-image").style.display = "block";
 
@@ -392,7 +392,7 @@ else if(command.includes("go to the middle door") && gamestate === "mainroom"){
     if (gamestate === "middle door"){
         speak("The middle door is locked. It seems its locked with a code. What could it be?");
     }}
-        else if (command.includes("go to the keypad")){
+        else if (command.includes("go to the keypad") && command.includes("keypad")){
             hideAll();
             document.getElementById("keypad-image").style.display = "block";
 
@@ -434,7 +434,7 @@ else if(command.includes("go to the middle door") && gamestate === "mainroom"){
 
 
 // Escape and Win
-else if (command.includes("go through the door") && gamestate === "door unlocked"){
+else if (command.includes("go through the door") || command.includes("go through") && gamestate === "door unlocked"){
     speak("You go through the door and escape. Congratulations, you win!");
     document.getElementById("output").textContent = "You go through the door and escape. Congratulations, you win!";
     gamestate = "game won";

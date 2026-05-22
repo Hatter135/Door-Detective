@@ -247,13 +247,13 @@ else if (command.includes("john") && gamestate === "username correct") {
         speak("That may be right as well.");
         document.getElementById("output").textContent = "That may be right.";
         gamestate = "username and password correct";
-        speak("log in?");
-        document.getElementById("output").textContent = "Log in?";
+        speak("do you want to log in?");
+        document.getElementById("output").textContent = "do you want to log in?";
         gamestate = "ready to log in";   
     }
 
 // Logging in and mail
-else if (command.includes("yes") && gamestate === "ready to log in") {
+else if (command.includes("yes") || command.includes("yeah") || command.includes("log in") || command.includes("login") && gamestate === "ready to log in") {
         speak("Logging in.");
         document.getElementById("output").textContent = "Logging in.";
         setTimeout(() => {

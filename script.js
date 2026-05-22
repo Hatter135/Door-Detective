@@ -1,4 +1,4 @@
-function speak(text) {
+﻿function speak(text) {
 
     window.speechSynthesis.cancel();
 
@@ -81,12 +81,21 @@ function getHelpCommands() {
 gamestate = "mainmenu";
 previosroom = "main-room-image";
 
-let gotmail = new Audio('audio/got-mail.wav');
-let error = new Audio('audio/windows-xp-error-sound.mp3');
-let horray = new Audio('audio/horray.mp3');
-let yippieeffect = new Audio('audio/yippee-sound-effect.wav');
+let gotmail = new Audio('audio/effects/got-mail.wav');
+let error = new Audio('audio/effects/windows-xp-error-sound.mp3');
+let horray = new Audio('audio/effects/horray.mp3');
+let yippieeffect = new Audio('audio/effects/yippee-sound-effect.wav');
+let computerboot = new Audio('audio/effects/computer-boot.mp3');
 
+let menuMusic = new Audio('audio/music/menu-music.mp3');
+let maintheme = new Audio('audio/music/main-theme.ogg');
+let intensemusic = new Audio('audio/music/intense-music.mp3');
 
+menuMusic.loop = true;
+menuMusic.play();
+
+maintheme.loop = true;
+intensemusic.loop = true;
 const canGoBackToMain = [
     "computer",
     "computer login",
@@ -127,6 +136,12 @@ function hideAll() {
     });
 }
 
+function stopmusic() {
+    menuMusic.pause();
+    maintheme.pause();
+    intensemusic.pause();
+}
+
 hideAll();
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -157,6 +172,9 @@ if (command.includes("start")) {
     gamestate = "mainroom";
 
     hideAll();
+    stopmusic();
+
+    maintheme.play();
     document.getElementById("main-room-image").style.display = "block";
 
     speak("Starting the game. You are now in the main room.");
@@ -192,7 +210,7 @@ else if (command.includes("turn on the computer")) {
 
     hideAll();
     document.getElementById("computer-image-booting").style.display = "block";
-
+    computerboot.play();
     speak("Turning on the computer");
     document.getElementById("output").textContent = "Turning on the computer.";
 
@@ -256,10 +274,14 @@ else if (command.includes("yes") && gamestate === "logged in") {
     speak("I opened the mail.");
     document.getElementById("output").textContent = "I opened the mail.";
 
+        stopmusic();
+        intensemusic.play();
+
     setTimeout(() => {
         speak("The mail reads:");
         document.getElementById("output").textContent = "The mail reads:";
         }, 1000);
+
 
     setTimeout(() => {
         speak("If you're reading this ... then I guess you made it far enough to remember who I am. The world's gone to hell. People are vanishing, streets are empty, and the ones who are still out there ... they're not right. The Jollys - that's what they call themselves. I found a file marked with their insignia - the laughing mask. Inside were reports about their 'tests.' They've been experimenting on people who get too close. Detectives, journalists, even families of their victims. That's why me and you got separated, Leo. I think they're planning to finish the job soon - silence me before I piece it all together. I found a manifest from 'Site 12.' It mentions something ...")
@@ -275,6 +297,7 @@ else if (command.includes("yes") && gamestate === "logged in") {
     
 
     setTimeout(() => {
+        intensemusic.pause();
         hideAll();
         document.getElementById("computer-error").style.display = "block";
         error.play();
@@ -290,13 +313,19 @@ else if (command.includes("yes") && gamestate === "logged in") {
 
         setTimeout(() => {
         hideAll();
-        document.getElementById("computer-image-booting").style.display = "block";           
+        document.getElementById("computer-image-booting").style.display = "block";
+        computerboot.play();           
         }, 94000);
+
+        
 
         setTimeout(() => {
         hideAll();
-        document.getElementById("computer-image-login").style.display = "block";           
+        document.getElementById("computer-image-login").style.display = "block"; 
+        maintheme.play();          
         }, 96000)
+
+        
 
     }
 

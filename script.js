@@ -441,6 +441,7 @@ else if (command.includes("go through the door") || command.includes("go through
 
         setTimeout(() => {
         hideAll();
+        stopmusic();
         horray.play();   
         document.getElementById("celibration").style.display = "block";     
         document.getElementById("you-win").style.display = "block"; 

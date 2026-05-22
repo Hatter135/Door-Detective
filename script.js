@@ -228,7 +228,7 @@ else if (command.includes("turn on the computer") || command.includes("turn on")
 
 }
 // Logging in
-else if (command.includes("log into the computer") || command.includes("log in") && gamestate === "computer login") {
+else if (command.includes("log into the computer") || command.includes("log in") || command.includes("login") && gamestate === "computer login") {
 
     speak("Username?");
     document.getElementById("output").textContent = "Username?";

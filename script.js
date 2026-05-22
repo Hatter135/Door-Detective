@@ -44,9 +44,7 @@ function getHelpCommands() {
         case "computer":
             return ["Say 'turn on the computer'", "Say 'go back'"];
         case "computer login":
-            return ["Say 'log into the computer'", "Say 'leo'"];
-        case "username correct":
-            return ["Say 'john'"];
+            return ["Say 'log into the computer'"];
         case "ready to log in":
             return ["Say 'yes' to log in"];
         case "logged in":
@@ -65,7 +63,7 @@ function getHelpCommands() {
         case "middle door":
             return ["Say 'go to the keypad'", "Say 'go back'"];
         case "keypad":
-            return ["Say '1 7 7 5'", "Say 'go back'"];
+            return ["Say 'go back'"];
         case "door unlocked":
             return ["Say 'go through the door'", "Say 'go back'"];
         case "game won":

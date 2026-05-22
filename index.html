@@ -22,9 +22,15 @@
 
 
     <button onclick="startListening()">Start Listening</button>
+    <button onclick="stopListening()">Stop Listening</button>
+    <button id="help-button" onclick="showHelp()">Help</button>
     <p id="awaiting"></p>
     <p id="output"></p>
-    
+
+    <div id="help-panel" class="help-panel">
+        <h2>Available Commands</h2>
+        <ul id="help-list"></ul>
+    </div>
 
     <div class="images"> 
 

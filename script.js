@@ -13,6 +13,69 @@ function speak(text) {
 
 }
 
+function stopListening() {
+    if (recognition) {
+        recognition.stop();
+        document.getElementById("awaiting").textContent = "Listening stopped.";
+        document.getElementById("output").textContent = "Speech recognition stopped.";
+    }
+}
+
+function showHelp() {
+    const helpPanel = document.getElementById("help-panel");
+    const helpList = document.getElementById("help-list");
+    const commands = getHelpCommands();
+
+    helpList.innerHTML = commands.map(cmd => `<li>${cmd}</li>`).join("");
+    helpPanel.classList.toggle("visible");
+}
+
+function getHelpCommands() {
+    switch (gamestate) {
+        case "mainmenu":
+            return ["Say 'start' to begin the game"];
+        case "mainroom":
+            return [
+                "Say 'go to the computer'",
+                "Say 'go to the right room'",
+                "Say 'go to the middle door'",
+                "Say 'go back'"
+            ];
+        case "computer":
+            return ["Say 'turn on the computer'", "Say 'go back'"];
+        case "computer login":
+            return ["Say 'log into the computer'", "Say 'leo'"];
+        case "username correct":
+            return ["Say 'john'"];
+        case "ready to log in":
+            return ["Say 'yes' to log in"];
+        case "logged in":
+            return ["Say 'yes' to check your mail"];
+        case "bathroom":
+            return [
+                "Say 'toilet'",
+                "Say 'wall'",
+                "Say 'shower'",
+                "Say 'go back'"
+            ];
+        case "toilet":
+        case "wall":
+        case "shower":
+            return ["Say 'go back' to return to the bathroom"];
+        case "middle door":
+            return ["Say 'go to the keypad'", "Say 'go back'"];
+        case "keypad":
+            return ["Say '1 7 7 5'", "Say 'go back'"];
+        case "door unlocked":
+            return ["Say 'go through the door'", "Say 'go back'"];
+        case "game won":
+            return ["Say 'exit' to leave the game"];
+        case "exited":
+            return ["No further commands available"];
+        default:
+            return ["Use the help button to view available commands."];
+    }
+}
 
 
 gamestate = "mainmenu";

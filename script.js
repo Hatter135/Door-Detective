@@ -84,6 +84,7 @@ let error = new Audio('audio/effects/windows-xp-error-sound.mp3');
 let horray = new Audio('audio/effects/horray.mp3');
 let yippieeffect = new Audio('audio/effects/yippee-sound-effect.wav');
 let computerboot = new Audio('audio/effects/computer-boot.mp3');
+let comutershutdown = new Audio('audio/effects/XP-Shutdown-Sound.mp3');
 
 let menuMusic = new Audio('audio/music/menu-music.mp3');
 let maintheme = new Audio('audio/music/main-theme.ogg');
@@ -305,6 +306,7 @@ else if (gamestate === "logged in" && (command.includes("yes") || command.includ
     setTimeout(() => {
         speak("The computer errored. and then restarted. I guess that's the end of that.");
         hideAll();
+        comutershutdown.play();
         document.getElementById("computer-image").style.display = "block";
         document.getElementById("output").textContent = "The computer errored, and then restarted.";
         }, 90000);

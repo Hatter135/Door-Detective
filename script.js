@@ -88,7 +88,6 @@ let comutershutdown = new Audio('audio/effects/XP-Shutdown-Sound.mp3');
 let walkeffect = new Audio('audio/effects/walking-sound-effect.mp3'); 
 let dooropen = new Audio('audio/effects/door-open-sound-effect.mp3');
 let keyboardeffect = new Audio('audio/effects/keyboard-sound-effect.mp3');
-
 let menuMusic = new Audio('audio/music/menu-music.mp3');
 let maintheme = new Audio('audio/music/main-theme.ogg');
 let intensemusic = new Audio('audio/music/intense-music.mp3');
@@ -528,7 +527,13 @@ else if (command.includes("go back") && gamestate === "toilet" || gamestate === 
     maintheme.play();
 }
 
-
+else if (command.includes("exit")|| command.includes("quit")|| command.includes("leave the game")){
+    hideAll();
+    stopmusic();
+    speak("Exiting the game. Thanks for playing!");
+    document.getElementById("output").textContent = "Exiting the game. Thanks for playing!";
+    gamestate = "exited";
+}
 
 
 // Unrecognised command or no command

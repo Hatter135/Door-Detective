@@ -450,6 +450,7 @@ else if(command.includes("go to the middle door") || command.includes("go middle
 else if (command.includes("go through the door") || command.includes("go through") || command.includes("escape") || command.includes("open the door") && gamestate === "door unlocked"){
     dooropen.play();
     walkeffect.play();
+    document.getElementById("middle-door-image").style.display = "none";
     speak("You go through the door and escape. Congratulations, you win!");
     document.getElementById("output").textContent = "You go through the door and escape. Congratulations, you win!";
     gamestate = "game won";

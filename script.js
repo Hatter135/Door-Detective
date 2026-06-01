@@ -533,6 +533,8 @@ else if (command.includes("exit")|| command.includes("quit")|| command.includes(
     speak("Exiting the game. Thanks for playing!");
     document.getElementById("output").textContent = "Exiting the game. Thanks for playing!";
     gamestate = "exited";
+    setTimeout(() => {
+    window.close();}, 5000);
 }
 
 

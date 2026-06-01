@@ -514,6 +514,7 @@ else if (command.includes("go back") && gamestate === "keypad"){
 
 else if (command.includes("go back") && gamestate === "toilet" || gamestate === "wall" || gamestate === "shower") {
 
+    walkeffect.play();
     speak("Going back to the bathroom.");
     document.getElementById("output").textContent = "Going back to the bathroom.";
     hideAll();

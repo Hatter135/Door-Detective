@@ -87,6 +87,7 @@ let computerboot = new Audio('audio/effects/computer-boot.mp3');
 let comutershutdown = new Audio('audio/effects/XP-Shutdown-Sound.mp3');
 let walkeffect = new Audio('audio/effects/walking-sound-effect.mp3'); 
 let dooropen = new Audio('audio/effects/door-open-sound-effect.mp3');
+let keyboardeffect = new Audio('audio/effects/keyboard-sound-effect.mp3');
 
 let menuMusic = new Audio('audio/music/menu-music.mp3');
 let maintheme = new Audio('audio/music/main-theme.ogg');
@@ -239,6 +240,7 @@ else if (gamestate === "computer login" && (command.includes("log into the compu
 }
 
 else if (command.includes("leo") && gamestate === "computer login") {
+        keyboardeffect.play();
         speak("That may be right.");
         document.getElementById("output").textContent = "That may be right.";
         gamestate = "username correct";
@@ -247,6 +249,7 @@ else if (command.includes("leo") && gamestate === "computer login") {
     }
 
 else if (command.includes("john") && gamestate === "username correct") {
+        keyboardeffect.play();
         speak("That may be right as well.");
         document.getElementById("output").textContent = "That may be right.";
         gamestate = "username and password correct";
@@ -549,9 +552,18 @@ else {
             "Try saying 'turn on the computer.'";
     }
 
+    else if (gamestate === "computer login" || gamestate === "ready to log in" || gamestate === "username correct") {
+        speak("I dont think that's right.");
+        document.getElementById("output").textContent = "I dont think that's right.";
+        setTimeout(() => {
+            speak("try saying 'log into the computer.' again.");
+            document.getElementById("output").textContent = "try saying 'log into the computer.' again.";
+        }, 2000);
+    }
+
     else if (gamestate === "exited") {
         speak("I dont want to talk to you anymore. Go waste your time somewhere else.");
-        document.getElementById("output").textContent = ("I dont want to talk to you anymore. Go waste your time somewhere else.");
+        document.getElementById("output").textContent = "I dont want to talk to you anymore. Go waste your time somewhere else.";
     }
 
     else {

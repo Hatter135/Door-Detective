@@ -85,6 +85,8 @@ let horray = new Audio('audio/effects/horray.mp3');
 let yippieeffect = new Audio('audio/effects/yippee-sound-effect.wav');
 let computerboot = new Audio('audio/effects/computer-boot.mp3');
 let comutershutdown = new Audio('audio/effects/XP-Shutdown-Sound.mp3');
+let walkeffect = new Audio('audio/effects/walking-sound-effect.mp3'); 
+let dooropen = new Audio('audio/effects/door-open-sound-effect.mp3');
 
 let menuMusic = new Audio('audio/music/menu-music.mp3');
 let maintheme = new Audio('audio/music/main-theme.ogg');
@@ -189,6 +191,8 @@ else if (gamestate === "mainroom" && (command.includes("go to the computer") || 
         speak("The computer is not in this room.");
         return;
     }
+
+    walkeffect.play();
 
     hideAll();
     document.getElementById("computer-image").style.display = "block";
@@ -334,6 +338,8 @@ else if (gamestate === "logged in" && (command.includes("yes") || command.includ
 // bathroom and right room
 else if(command.includes("go to the right room") || command.includes("go right") || command.includes("right") && gamestate === "mainroom"){
 
+    walkeffect.play();
+    dooropen.play();
     hideAll();
     document.getElementById("bathroom-image").style.display = "block";
 
@@ -345,6 +351,7 @@ else if(command.includes("go to the right room") || command.includes("go right")
 // toilet
 else if(command.includes("toilet") && gamestate === "bathroom"){
 
+    walkeffect.play();
     hideAll();
     document.getElementById("toilet-image").style.display = "block";
 
@@ -357,6 +364,7 @@ else if(command.includes("toilet") && gamestate === "bathroom"){
 // wall
 else if(command.includes("wall") && gamestate === "bathroom"){
 
+    walkeffect.play();
     hideAll();
     document.getElementById("wall-image").style.display = "block";
 
@@ -381,6 +389,8 @@ else if(command.includes("shower") && gamestate === "bathroom"){
 
 // Middle Door
 else if(command.includes("go to the middle door") || command.includes("go middle") || command.includes("middle") && gamestate === "mainroom"){
+    
+    walkeffect.play();
     hideAll();
     document.getElementById("middle-door-image").style.display = "block";
 
@@ -393,6 +403,8 @@ else if(command.includes("go to the middle door") || command.includes("go middle
         speak("The middle door is locked. It seems its locked with a code. What could it be?");
     }}
         else if (command.includes("go to the keypad") && command.includes("keypad")){
+
+            walkeffect.play();
             hideAll();
             document.getElementById("keypad-image").style.display = "block";
 
@@ -423,6 +435,7 @@ else if(command.includes("go to the middle door") || command.includes("go middle
             speak("Going back to the the door.");
             hideAll();
             document.getElementById(previosroom).style.display = "block";
+            walkeffect.play();
 
         }
         else{
@@ -435,6 +448,8 @@ else if(command.includes("go to the middle door") || command.includes("go middle
 
 // Escape and Win
 else if (command.includes("go through the door") || command.includes("go through") || command.includes("escape") || command.includes("open the door") && gamestate === "door unlocked"){
+    dooropen.play();
+    walkeffect.play();
     speak("You go through the door and escape. Congratulations, you win!");
     document.getElementById("output").textContent = "You go through the door and escape. Congratulations, you win!";
     gamestate = "game won";
@@ -475,6 +490,10 @@ else if (command.includes("exit") && gamestate === "game won"){
 
 // Going back from rooms
 else if (command.includes("go back") && canGoBackToMain.includes(gamestate)){
+    walkeffect.play();
+    if (gamestate === "bathroom"){
+        dooropen.play();
+    }
     speak("Going back to the main room.");
     hideAll();
     document.getElementById("main-room-image").style.display = "block";

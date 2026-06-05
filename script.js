@@ -128,6 +128,7 @@ function hideAll() {
         "computer-mail-01",
         "computer-mail-02",
         "computer-error",
+        "computer-login-error",
         "celibration",
         "you-win",
         "Yippie"
@@ -565,9 +566,14 @@ else {
     else if (gamestate === "computer login" || gamestate === "ready to log in" || gamestate === "username correct") {
         speak("I dont think that's right.");
         document.getElementById("output").textContent = "I dont think that's right.";
+        error.play();
+        hideAll();
+        document.getElementById("computer-login-error").style.display = "block";
         setTimeout(() => {
             speak("try saying 'log into the computer.' again.");
             document.getElementById("output").textContent = "try saying 'log into the computer.' again.";
+            hideAll();
+            document.getElementById("computer-image-login").style.display = "block";
         }, 2000);
     }
 

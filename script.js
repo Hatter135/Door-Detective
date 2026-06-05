@@ -69,7 +69,7 @@ function getHelpCommands() {
         case "game won":
             return [
                 "Say 'exit' to leave the game",
-                "Say 'Start' to play again"
+                "Say 'start' to play again"
             ];
         case "exited":
             return ["No further commands available"];

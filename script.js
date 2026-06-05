@@ -67,7 +67,10 @@ function getHelpCommands() {
         case "door unlocked":
             return ["Say 'go through the door'", "Say 'go back'"];
         case "game won":
-            return ["Say 'exit' to leave the game"];
+            return [
+                "Say 'exit' to leave the game",
+                "Say 'Start' to play again"
+            ];
         case "exited":
             return ["No further commands available"];
         default:

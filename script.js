@@ -490,6 +490,8 @@ else if (command.includes("exit") && gamestate === "game won"){
 
 
         gamestate = "exited";
+
+        window.close();
         }, 5000);
 
 }

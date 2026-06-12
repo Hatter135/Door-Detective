@@ -13,6 +13,46 @@
 
 }
 
+// PWA Install Prompt Handler
+let installPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('[PWA] Install prompt ready');
+    e.preventDefault();
+    installPrompt = e;
+    // Show custom install button if browser doesn't show prompt
+    setTimeout(() => {
+        if (!document.getElementById('install-btn-pwa')) {
+            const btn = document.createElement('button');
+            btn.id = 'install-btn-pwa';
+            btn.textContent = 'Install App';
+            btn.style.position = 'fixed';
+            btn.style.top = '10px';
+            btn.style.right = '10px';
+            btn.style.zIndex = '9999';
+            btn.style.padding = '8px 16px';
+            btn.style.backgroundColor = '#4CAF50';
+            btn.style.color = 'white';
+            btn.style.border = 'none';
+            btn.style.borderRadius = '4px';
+            btn.onclick = () => {
+                if (installPrompt) {
+                    installPrompt.prompt();
+                    installPrompt.userChoice.then(choiceResult => {
+                        console.log('[PWA] User choice:', choiceResult.outcome);
+                        installPrompt = null;
+                        btn.remove();
+                    });
+                }
+            };
+            document.body.appendChild(btn);
+        }
+    }, 2000);
+});
+
+window.addEventListener('appinstalled', () => {
+    console.log('[PWA] App installed successfully');
+});
+
 function stopListening() {
     if (recognition) {
         recognition.stop();

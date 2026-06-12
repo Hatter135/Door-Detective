@@ -13,57 +13,6 @@
 
 }
 
-// PWA Install Prompt Handler
-let installPrompt = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-    console.log('[PWA] Install prompt ready');
-    e.preventDefault();
-    installPrompt = e;
-});
-
-// Show install button immediately
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const btn = document.createElement('button');
-        btn.id = 'install-btn-pwa';
-        btn.textContent = '📥 Install App';
-        btn.style.position = 'fixed';
-        btn.style.top = '10px';
-        btn.style.right = '10px';
-        btn.style.zIndex = '9999';
-        btn.style.padding = '10px 15px';
-        btn.style.backgroundColor = '#4CAF50';
-        btn.style.color = 'white';
-        btn.style.border = 'none';
-        btn.style.borderRadius = '5px';
-        btn.style.fontSize = '14px';
-        btn.style.fontWeight = 'bold';
-        btn.style.cursor = 'pointer';
-        btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-        btn.onclick = () => {
-            console.log('[PWA] Install button clicked');
-            if (installPrompt) {
-                installPrompt.prompt();
-                installPrompt.userChoice.then(choiceResult => {
-                    console.log('[PWA] User choice:', choiceResult.outcome);
-                    installPrompt = null;
-                    btn.style.display = 'none';
-                });
-            } else {
-                alert('Install prompt not available on your browser.');
-            }
-        };
-        document.body.appendChild(btn);
-        console.log('[PWA] Install button added to page');
-    }, 500);
-});
-
-window.addEventListener('appinstalled', () => {
-    console.log('[PWA] App installed successfully');
-    const btn = document.getElementById('install-btn-pwa');
-    if (btn) btn.style.display = 'none';
-});
-
 function stopListening() {
     if (recognition) {
         recognition.stop();

@@ -1,7 +1,7 @@
 // This file runs in the background and makes your app work offline
  
 // Give your cache a name - change this if you update your app files
-const CACHE_NAME = 'door-detective-cache-v3';
+const CACHE_NAME = 'door-detective-cache-v5';
  
 // List every file your app needs to work
 const FILES_TO_CACHE = [

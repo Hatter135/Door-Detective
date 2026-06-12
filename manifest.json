@@ -2,7 +2,7 @@
   "name": "Door Detective: Pocket Edition",
   "short_name": "Door Detective",
   "description": "A game of mystery and strange bathrooms.",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",

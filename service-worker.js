@@ -1,7 +1,7 @@
 // This file runs in the background and makes your app work offline
  
 // Give your cache a name - change this if you update your app files
-const CACHE_NAME = 'door-detective-cache-v7';
+const CACHE_NAME = 'door-detective-cache-v8';
  
 // List every file your app needs to work
 const FILES_TO_CACHE = [
@@ -27,13 +27,18 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log('[SW] Cache opened, adding files...');
-      return cache.addAll(FILES_TO_CACHE).catch(err => {
-        console.error('[SW] Cache failed:', err);
-        throw err;
-      });
-    }).catch(err => {
-      console.error('[SW] Install failed:', err);
-      self.skipWaiting();
+      // Cache each file individually so one failure doesn't break everything
+      return Promise.all(
+        FILES_TO_CACHE.map(url => 
+          fetch(url).then(response => {
+            if (!response.ok) throw new Error(`${url}: ${response.status}`);
+            return cache.put(url, response);
+          }).catch(err => {
+            console.warn('[SW] Failed to cache:', url, err.message);
+            // Don't throw - continue with other files
+          })
+        )
+      );
     })
   );
 });

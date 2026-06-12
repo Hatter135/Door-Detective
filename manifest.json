@@ -8,12 +8,12 @@
   "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "logo.ico",
-      "sizes": "128x128",
-      "type": "image/x-icon"
+      "src": "images/game-stuff/start-menu/door-detective-start-menu.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "images/game-stuff/start-menu/door-detective-start-menu.png",
       "sizes": "512x512",
       "type": "image/png"
     }
